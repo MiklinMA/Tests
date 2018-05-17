@@ -15,32 +15,32 @@
  */
 
 function reverse(str) {
-	return str.split('').reverse().join('')
+    return str.split('').reverse().join('')
 }
 
 function bracket_reverser(word) {
-	let parts
-	parts = word.split('(').join('# ')
-	parts = parts.split(')').join('#')
-	parts = parts.split('#')
+    let parts
+    parts = word.split('(').join('# ')
+    parts = parts.split(')').join('#')
+    parts = parts.split('#')
 
-	let result = ''
-	let sub = []
+    let result = ''
+    let sub = []
     let str = ''
 
-	parts.forEach(part => {
-		if (part[0] == ' ') {
+    parts.forEach(part => {
+        if (part[0] == ' ') {
             sub.unshift(part.slice(1))
-		} else {
+        } else {
             sub.forEach(s => {
                 str = reverse(s + str)
             })       
-			result += str + part
-			str = ''
+            result += str + part
+            str = ''
             sub = []
-		}
-	})
-	console.log(word, '=>', result)
+        }
+    })
+    console.log(word, '=>', result)
 }
 
 bracket_reverser('foo(bar)')
