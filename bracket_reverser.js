@@ -1,3 +1,15 @@
+/*
+ * You have sentence with having '(' and ')' in the sentence.
+ * You have to remove () and reverse word in side the parenthesis.
+ * Use only functions provided by NodeJS and no RegEx, no external lib
+ *
+ * Like:
+ * foo(bar) => foorab 
+ * (bar) => rab 
+ * foo(bar)blim => foorabblim 
+ * foo(foo(bar))blim => foobaroofblim
+ */
+
 function reverse(str) {
 	return str.split('').reverse().join('')
 }
