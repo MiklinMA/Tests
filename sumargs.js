@@ -1,3 +1,7 @@
+/*
+ * 1. Create function that returns sum of all it arguments
+ * 2. Use this function to get sum elements of array
+ */
 function sumargs() {
 	var total = 0;
 	[].forEach.call(arguments, function(el) {
