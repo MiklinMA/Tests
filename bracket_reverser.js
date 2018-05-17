@@ -8,6 +8,10 @@
  * (bar) => rab 
  * foo(bar)blim => foorabblim 
  * foo(foo(bar))blim => foobaroofblim
+ *
+ * foo(foo(bar(abc)))blim => foobarcbaoofblim
+ *     cba -> abcrab -> barcbaoof
+ * foo(foo(bar))blim(foo) => foobaroofblimoof
  */
 
 function reverse(str) {
@@ -15,25 +19,25 @@ function reverse(str) {
 }
 
 function bracket_reverser(word) {
-	let parts = ''
+	let parts
 	parts = word.split('(').join('# ')
 	parts = parts.split(')').join('#')
 	parts = parts.split('#')
+
 	let result = ''
-	let sub = ''
-	let count = 0
+	let sub = []
+    let str = ''
+
 	parts.forEach(part => {
 		if (part[0] == ' ') {
-			if (count % 2 == 0) {
-				sub = reverse(part.slice(1)) + sub
-			} else {
-				sub = part.slice(1) + sub
-			}
-			count++
+            sub.unshift(part.slice(1))
 		} else {
-			result += sub + part
-			sub = ''
-			count = 0
+            sub.forEach(s => {
+                str = reverse(s + str)
+            })       
+			result += str + part
+			str = ''
+            sub = []
 		}
 	})
 	console.log(word, '=>', result)
@@ -43,5 +47,7 @@ bracket_reverser('foo(bar)')
 bracket_reverser('(bar)')
 bracket_reverser('foo(bar)blim')
 bracket_reverser('foo(foo(bar))blim')
+
+bracket_reverser('foo(foo(bar(abc)))blim')
 bracket_reverser('foo(foo(bar))blim(foo)')
 
