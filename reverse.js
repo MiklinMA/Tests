@@ -1,3 +1,7 @@
+/*
+ * Create recursion function to reverse string
+ */
+
 function reverse(str) {
 	if (!str || !str.length) return '';
 	return reverse(str.slice(1)) + str[0];
